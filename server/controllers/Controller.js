@@ -1,7 +1,9 @@
 const { Op } = require("sequelize")
 const { comparePassword } = require("../helpers/bcrypt")
 const { createToken } = require("../helpers/jwtoken")
-const { User, Chat } = require("../models")
+const imagekit = require("../utils/imageKit")
+
+const { User, Chat, Post } = require("../models")
 
 class Controller {
 
@@ -39,10 +41,56 @@ class Controller {
 
   static async register(req, res, next) {
     try {
-      const { username, password, status, avatarUrl } = req.body
-      await User.create({ username, password, status, avatarUrl })
+      const { username, password } = req.body
+      await User.create({ username, password })
       res.status(201).json({
         message: "Success create new user"
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async updateStatus(req, res, next) {
+    try {
+      const { status } = req.body
+      await User.update({ status }, { where: { id: req.loginInfo.userId } })
+
+      res.status(200).json({ message: "Success update status" })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async showProfile(req, res, next) {
+    try {
+      const profile = await User.findByPk(req.loginInfo.userId)
+
+      res.status(200).json(profile)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async showPosts(req, res, next) {
+    try {
+      const posts = await Post.findAll()
+
+      res.status(200).json(posts)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async addPost(req, res, next) {
+    try {
+      // user id dari re qlogin info
+      const { title, content } = req.body
+
+      await Post.create({ title, content, UserId: req.loginInfo.userId })
+
+      res.status(201).json({
+        message: "Success create post"
       })
     } catch (error) {
       next(error)
@@ -73,6 +121,59 @@ class Controller {
       next(error)
     }
   }
+
+  static async uploadImage(req, res, next) {
+    try {
+
+      let foundUser = await User.findByPk(req.loginInfo.userId)
+
+      if (!foundUser) throw { name: "NotFound", id }
+
+      if (!req.file) throw { name: "imgUrlValidationError" }
+
+
+      const imageInBase64 = req.file.buffer.toString("base64")
+
+      // if (imageInBase64 === "") throw { name: "imgUrlValidationError" }
+
+      // console.log(req.file)
+
+      const result = await imagekit.upload({
+        file: imageInBase64,
+        fileName: req.file.originalname,
+        tags: [`avatar`]
+      })
+
+      // console.log(result)
+
+      await User.update({ avatarUrl: result.url }, {
+        where: { id: req.loginInfo.userId }
+      })
+
+      res.status(200).json({
+        message: "Upload success",
+        result
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async updateLikes(req, res, next) {
+    try {
+      const { id } = req.params
+      const post = await Post.findByPk(id)
+      await post.increment({ likes: 1 })
+
+      res.status(200).json({
+        message: "Liked"
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+
 }
 
 

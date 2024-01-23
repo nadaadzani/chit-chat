@@ -10,12 +10,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       content: {
         type: Sequelize.TEXT,
         allowNull: false
       },
+      likes: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      }
+      ,
       UserId: {
         type: Sequelize.INTEGER,
         references: {

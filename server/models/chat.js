@@ -21,8 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    Sender: DataTypes.INTEGER,
-    Recipient: DataTypes.INTEGER
+    Sender: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Recipient: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Chat',

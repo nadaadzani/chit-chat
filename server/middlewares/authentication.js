@@ -26,7 +26,8 @@ const authentication = async (req, res, next) => {
     req.loginInfo = {
       userId: user.id,
       username: user.username,
-      role: user.role,
+      status: user.status,
+      avatarUrl: user.avatarUrl
     };
 
     next();
