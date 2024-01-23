@@ -7,7 +7,7 @@ const Login = () => {
         <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
             <h1 className="text-5xl font-bold sm:text-6xl">
-              Welcome to <span className="text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 bg-clip-text text-white font-extrabold py-2 px-4">
+              Welcome to <span className="text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 bg-clip-text font-extrabold py-2 px-4">
                 chitChat
               </span>
             </h1>
@@ -94,7 +94,7 @@ const Login = () => {
               </p>
 
               <Link
-                to={"/posts"}
+                to={"/home"}
                 type="submit"
                 className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
                 Sign in
