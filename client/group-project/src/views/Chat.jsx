@@ -5,7 +5,7 @@ const chat = () => {
     <>
   {/* Hello world */}
   {/* component */}
-  <div className="flex-1 px-3 py-5 sm:px-14 sm:py-6 justify-between flex flex-col h-screen">
+  <div className="flex-1 px-3 py-5 sm:px-6 sm:py-2 justify-between flex flex-col h-screen">
     <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
       <div className="relative flex items-center space-x-4">
         <div className="relative">

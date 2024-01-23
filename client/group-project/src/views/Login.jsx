@@ -6,8 +6,10 @@ const Login = () => {
       <section className="relative flex flex-wrap lg:h-screen ">
         <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-5xl">
-              Get started today!
+            <h1 className="text-5xl font-bold sm:text-6xl">
+              Welcome to <span className="text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 bg-clip-text text-white font-extrabold py-2 px-4">
+                chitChat
+              </span>
             </h1>
 
             <p className="mt-10 text-gray-500">
@@ -18,7 +20,7 @@ const Login = () => {
 
           <form action="" className="mx-auto mb-0 mt-10 max-w-md space-y-10">
             <div>
-              <label htmlFor="username"  className="sr-only">
+              <label htmlFor="username" className="sr-only">
                 Username
               </label>
 
@@ -86,13 +88,13 @@ const Login = () => {
             <div className="flex mt-10 items-center justify-between">
               <p className="text-sm text-gray-500">
                 No account?
-                <Link to={'/register'}
-                 className="underline" href="">
+                <Link to={"/register"} className="underline" href="">
                   Sign up
                 </Link>
               </p>
 
-              <Link to={'/chat/1'}
+              <Link
+                to={"/posts"}
                 type="submit"
                 className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
                 Sign in
