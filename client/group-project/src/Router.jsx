@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 // import Sidebar from "./components/Sidebar";
 import Chat from "./views/chat";
 import BaseLayout from "./views/layout/baseLayout";
@@ -8,43 +8,61 @@ import Posting from "./views/Posting";
 import Register from "./views/Register";
 import UpdatePhoto from "./views/UpdatePhoto";
 import UpdateStatus from "./views/UpdateStatus";
+import {io} from "socket.io-client"
+
+const url = 'http://localhost:3000'
+const socket = io("http://localhost:3000", {
+  autoConnect: false
+})
 
 const Router = createBrowserRouter([
   {
     path: "/register",
-    element: <Register />,
+    element: <Register url={url}/>,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <Login url={url}/>,
+    loader: () => {
+      if (localStorage.access_token) {
+        return redirect("/home");
+      }
+      return null;
+    }
   },
+  // {
+  //   path: "/",
+  //   element: <Login />,
+  // },
   {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    element: <BaseLayout />,
+    element: <BaseLayout url={url}/>,
+    loader: () => {
+      if (!localStorage.access_token) {
+        return redirect("/login");
+      }
+      return null;
+    },
     children: [
       {
         path: "/home",
-        element: <Post />,
+        element: <Post url={url}/>,
       },
 
       {
-        path: "/chat/1",
-        element: <Chat />,
+        path: "/chat/:id",
+        element: <Chat url={url} socket={socket}/>,
       },
       {
         path: "/posting",
-        element: <Posting />,
+        element: <Posting url={url}/>,
       },
       {
         path: "/updatePhoto",
-        element: <UpdatePhoto />,
+        element: <UpdatePhoto url={url}/>,
       },
       {
         path: "/updateStatus",
-        element: <UpdateStatus/>,
+        element: <UpdateStatus url={url}/>,
       },
     ],
   },

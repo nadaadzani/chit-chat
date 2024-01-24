@@ -1,9 +1,43 @@
 // import React from 'react'
 // import { Icon } from '@iconify/react';
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom"
+import Swal from 'sweetalert2'
 
 
 const Posting = () => {
+
+  const navigate = useNavigate();
+
+  async function handlePost(e) {
+    e.preventDefault()
+    try {
+      const formData = {
+        title: e.target[0].value,
+        content: e.target[1].value
+      }
+      // console.log(formData)
+      await axios.post('http://localhost:3000/posts', formData, {headers: {Authorization: `Bearer ${localStorage.access_token}`}})
+      Swal.fire({
+        // icon:'success',
+        title: "Success add post!",
+        width: 600,
+        padding: "3em",
+        color: "white",
+        timer: 1000,
+        background: "#fff url(https://i.pinimg.com/474x/9a/5b/eb/9a5beb996e2113870cb199a95eb6b947.jpg)",
+        backdrop: `
+          url("/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
+      navigate('/home')
+    } catch (error) {
+    console.log(error);  
+    }
+  }  
+
   return (
     <>
     <section className="bg-white w-full h-screen">
@@ -22,12 +56,13 @@ const Posting = () => {
       </div>
 
       <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-7">
-        <form action="" className="space-y-4">
+        <form action="" className="space-y-4" onSubmit={handlePost}>
           <div>
             <label className="sr-only" htmlFor="name">Title</label>
             <input
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
               placeholder="Title"
+              // value={formData.title}
               type="text"
               id="title"
             />
@@ -54,7 +89,7 @@ const Posting = () => {
               />
             </div>
           </div> */}
-
+{/* 
           <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
             <div>
               <input className="peer sr-only" id="option1" type="radio" tabIndex="-1" name="option" />
@@ -91,7 +126,7 @@ const Posting = () => {
                 <span className="text-sm"> Option 3 </span>
               </label>
             </div>
-          </div>
+          </div> */}
 
           <div>
             <label className="sr-only" htmlFor="message"> Description</label>

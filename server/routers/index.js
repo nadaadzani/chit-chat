@@ -26,6 +26,9 @@ router.get("/posts", Controller.showPosts) //v
 router.post("/posts", Controller.addPost) //v
 router.post("/likes/:id", Controller.updateLikes) //v
 
+router.get("/users", Controller.showUsers)
+router.get("/users/:id", Controller.showUserById)
+
 router.post("/chat/:recipient", Controller.addMessage) //v
 router.get("/chat/:recipient", Controller.fetchMessages) //v
 

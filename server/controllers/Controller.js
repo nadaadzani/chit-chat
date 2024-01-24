@@ -74,7 +74,11 @@ class Controller {
 
   static async showPosts(req, res, next) {
     try {
-      const posts = await Post.findAll()
+      const posts = await Post.findAll({
+        include: {
+          model: User,
+        },order: [["createdAt", "DESC"]],
+      });
 
       res.status(200).json(posts)
     } catch (error) {
@@ -114,7 +118,7 @@ class Controller {
   static async fetchMessages(req, res, next) {
     try {
       const { recipient } = req.params
-      const historyMessages = await Chat.findAll({ where: { [Op.or]: [{ Sender: req.loginInfo.userId, Recipient: recipient }, { Sender: recipient, Recipient: req.loginInfo.userId }] }, order: [["createdAt", "DESC"]] })
+      const historyMessages = await Chat.findAll({ where: { [Op.or]: [{ Sender: req.loginInfo.userId, Recipient: recipient }, { Sender: recipient, Recipient: req.loginInfo.userId }] }, order: [["createdAt", "ASC"]] })
 
       res.status(200).json(historyMessages)
     } catch (error) {
@@ -168,6 +172,31 @@ class Controller {
       res.status(200).json({
         message: "Liked"
       })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async showUsers(req,res,next) {
+    try {
+      const users = await User.findAll({
+        attributes: {
+          exclude:["password"]
+        }
+      })
+
+      res.status(200).json(users)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async showUserById(req,res,next) {
+    try {
+      const {id} = req.params
+      const user = await User.findByPk(id)
+
+      res.status(200).json(user)
     } catch (error) {
       next(error)
     }

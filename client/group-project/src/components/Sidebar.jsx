@@ -1,15 +1,49 @@
+/* eslint-disable react/prop-types */
 // import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 // import toast, { Toaster } from 'react-hot-toast';
 
-const Sidebar = () => {
-  const users = [
-    { id: 1, name: "John Doe", profilePic: "user1.jpg" },
-    { id: 2, name: "Jane Smith", profilePic: "user2.jpg" },
-    { id: 3, name: "Bob Johnson", profilePic: "user3.jpg" },
-    { id: 4, name: "Alice Williams", profilePic: "user4.jpg" },
-  ];
+const Sidebar = ({ url }) => {
+  const [data, setData] = useState([]);
+  const [self, setSelf] = useState({})
+
+  // console.log(data);
+
+  const navigate = useNavigate();
+  // const users = [
+  //   { id: 1, name: "John Doe", profilePic: "user1.jpg" },
+  //   { id: 2, name: "Jane Smith", profilePic: "user2.jpg" },
+  //   { id: 3, name: "Bob Johnson", profilePic: "user3.jpg" },
+  //   { id: 4, name: "Alice Williams", profilePic: "user4.jpg" },
+  // ];
+
+  async function fetchSelf() {
+    try {
+      const {data} = await axios.get(`${url}/profile`, {headers: {Authorization: `Bearer ${localStorage.access_token}`}})
+      setSelf(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function fetchUsers() {
+    try {
+      const data = await axios.get(`${url}/users`, {
+        headers: { Authorization: `Bearer ${localStorage.access_token}` },
+      });
+      setData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchUsers();
+    fetchSelf()
+  }, []);
 
   return (
     <>
@@ -38,27 +72,31 @@ const Sidebar = () => {
               className="text-blue-500 hover:text-blue-700 font-semibold">
               <Icon className="size-10" icon="mdi:update" />
             </Link>
-            <Link
-              to={"/"}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                localStorage.clear();
+                navigate("/login");
+              }}
               className="text-blue-500 hover:text-blue-700 font-semibold">
               <Icon className="size-10" icon="icon-park-outline:logout" />
-            </Link>
+            </button>
             {/* <h1>P</h1>
             <h1>H</h1> */}
           </div>
 
           <h2 className="text-lg font-semibold mb-4">Online Users</h2>
-          {users.map((user) => (
+          {data.map((user) => (
             <Link
-              to={`/chat/1`}
-              className="flex items-center mb-4 hover:bg-gray-100 transition-colors rounded-lg p-2"
+              to={`/chat/${user.id}`}
+              className={user.id === self.id ? "hidden": "flex items-center mb-4 hover:bg-gray-100 transition-colors rounded-lg p-2"}
               key={user.id}>
               <img
-                src={user.profilePic}
-                alt={user.name}
+                src={user.avatarUrl}
+                alt={user.username}
                 className="w-10 h-10 rounded-full mr-2"
               />
-              <span className="text-gray-800">{user.name}</span>
+              <span className="text-gray-800">{user.username}</span>
             </Link>
           ))}
         </div>

@@ -1,8 +1,41 @@
 // import React from 'react'
-
 // import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
-const UpdatePhoto = () => {
+const UpdatePhoto = ({url}) => {
+  // const [image, setImage] = useState('')
+  const navigate = useNavigate()
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    try {
+      let file = e.target.files[0]
+      let formData = new FormData()
+      formData.append('file', file)
+
+      const { data } = await axios.patch(
+        `${url}/avatar`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.access_token}`,
+          },
+        }
+      );
+      navigate("/home");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: data.message,
+      });
+
+      // console.log(e.target.files[0])
+    } catch (error) {
+      console.log(error)
+    }
+  }
    
   return (
     <>
@@ -39,7 +72,7 @@ const UpdatePhoto = () => {
                 or drag and drop your file here
               </p>
             </label>
-            <input id="file" type="file" className="hidden" />
+            <input id="file" type="file" className="hidden" onChange={handleSubmit}/>
           </div>
         </div>
       </form>

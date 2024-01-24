@@ -10,6 +10,8 @@ const authentication = require('./middlewares/authentication')
 const router = require('./routers')
 const Controller = require('./controllers/Controller')
 
+app.use(cors())
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -19,7 +21,6 @@ const io = new Server(server, {
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(cors())
 
 io.on('connection', (socket) => {
   console.log('a user connected', socket.id);
@@ -31,10 +32,12 @@ io.on('connection', (socket) => {
   }
 
   socket.on("message:new", (message) => {
-    io.emit("message:update", {
-      from: socket.handshake.auth.username,
-      message
-    })
+    // io.emit("message:update", {
+    //   from: socket.handshake.auth.username,
+    //   // id: socket.id,
+    //   message
+    // })
+    socket.broadcast.emit("refresh chat")
   })
 });
 

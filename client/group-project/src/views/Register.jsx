@@ -1,8 +1,30 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'
 // import React from 'react'
 
 const Register = () => {
+  
+  const navigate = useNavigate()
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    try {
+      const formData = {
+        username: e.target[0].value,
+        password: e.target[1].value
+      }
+
+      // Banf bikinin di router buat url
+
+      await axios.post('http://localhost:3000/register', formData)
+      // console.log(data)
+      navigate('/login')
+      // console.log(formData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <section className="bg-gray-50">
@@ -69,7 +91,7 @@ const Register = () => {
                 </p>
               </div>
 
-              <form action="#" className="mt-8  grid grid-cols-6 gap-6">
+              <form action="#" className="mt-8  grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
                 <div className="col-span-6 ">
                   <label
                     htmlFor="FirstName"

@@ -4,11 +4,11 @@ import Sidebar from "../../components/Sidebar";
 
 // import React from 'react'
 
-const BaseLayout = () => {
+const BaseLayout = ({url}) => {
   return (
     <>
       <div className="md:flex max-md:flex-col ">
-        <Sidebar className="max-md:hidden" />
+        <Sidebar className="max-md:hidden" url={url}/>
         <Outlet />
       </div>
     </>
