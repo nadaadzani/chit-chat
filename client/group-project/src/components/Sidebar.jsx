@@ -85,7 +85,7 @@ const Sidebar = ({ url }) => {
             <h1>H</h1> */}
           </div>
 
-          <h2 className="text-lg font-semibold mb-4">Online Users</h2>
+          <h2 className="text-lg font-semibold mb-4">Messages</h2>
           {data.map((user) => (
             <Link
               to={`/chat/${user.id}`}

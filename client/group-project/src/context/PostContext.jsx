@@ -9,6 +9,7 @@ export const postContext = createContext({
 })
 
 // provider
+// eslint-disable-next-line react/prop-types
 export default function PostContext({ children }) {
     const [posts, setPosts] = useState([])
 

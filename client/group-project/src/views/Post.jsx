@@ -27,7 +27,7 @@ const Post = ({url}) => {
   return (
     <>
       <section className="md:py-12 min-h-screen pt-2">
-        <div className="w-full min-h-screen mx-auto px-4 md:px-8">
+        <div className="min-w-full min-h-screen  px-4 md:px-8">
           <div className="max-w-full">
             <h1 className="text-gray-800 text-4xl font-extrabold sm:text-5xl">
               All Posts
@@ -49,9 +49,12 @@ const Post = ({url}) => {
                     </div>
                     <div>
                       <span className="block text-sm text-indigo-600 font-medium"></span>
-                      <h3 className="text-base text-gray-800 font-semibold mt-1">
-                        {post.title}
+                      <h3 className="text-lg first-letter:uppercase text-gray-800 font-bold mt-1">
+                        {post.User.username}
                       </h3>
+                      <h5 className="text-xs text-blue-500 font-semibold">
+                      {post.User.status}
+                      </h5>
                     </div>
                   </div>
                   <p className="text-gray-600 sm:text-sm">{post.content}</p>

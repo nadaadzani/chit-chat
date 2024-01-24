@@ -50,7 +50,7 @@ const chat = ({ url, socket }) => {
         { headers: { Authorization: `Bearer ${localStorage.access_token}` } }
       );
 
-
+      e.target[0].value = ""
       fetchChatsHistory()
     } catch (error) {
       console.log(error);
