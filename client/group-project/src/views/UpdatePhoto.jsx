@@ -11,7 +11,7 @@ const UpdatePhoto = () => {
           <label
             htmlFor="FirstName"
             className="block text-6xl  font-bold text-black">
-            Edit picture
+            Edit Avatar
           </label>
 
           <div className="max-w-3xl h-[400px] mt-12  rounded-lg border-2 border-dashed flex items-center justify-center">

@@ -22,13 +22,13 @@ const chat = () => {
         </div>
         <div className="flex flex-col leading-tight">
           <div className="text-2xl mt-1 flex items-center">
-            <span className="text-gray-700  font-bold mr-3">Bos bokep</span>
+            <span className="text-gray-700  font-bold mr-3">Saiful Jamil</span>
           </div>
           <span className="text-lg max-md:hidden text-gray-600">Mau obat kuat dm saya!!!</span>
         </div>
       </div>
       <div className="flex items-center space-x-2">
-        <button
+        {/* <button
           type="button"
           className="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
         >
@@ -46,8 +46,8 @@ const chat = () => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
-        </button>
-        <button
+        </button> */}
+        {/* <button
           type="button"
           className="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
         >
@@ -65,8 +65,8 @@ const chat = () => {
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
             />
           </svg>
-        </button>
-        <button
+        </button> */}
+        {/* <button
           type="button"
           className="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
         >
@@ -84,7 +84,7 @@ const chat = () => {
               d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
             />
           </svg>
-        </button>
+        </button> */}
       </div>
     </div>
     <div
@@ -112,7 +112,7 @@ const chat = () => {
           <div className="flex flex-col space-y-2 text-md max-w-md mx-2 order-1 items-end">
             <div>
               <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
-               link apa dulu nak
+              seandainya kau tahu
               </span>
             </div>
           </div>
@@ -177,7 +177,7 @@ const chat = () => {
           <div className="flex flex-col space-y-2 text-md max-w-md mx-2 order-2 items-start">
             <div>
               <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-               please yang bdsm terbaru
+              andai ku tahu kapan tiba ajalku
               </span>
             </div>
           </div>

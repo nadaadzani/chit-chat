@@ -64,7 +64,7 @@ const Sidebar = () => {
         </div>
       </div>
       {/* NAV MOBILE */}
-      <div className="px-3 pt-5 md:hidden">
+      <div className="  flex px-3   pt-5 md:hidden">
         <div className="flex   gap-2">
           <div>
             <Link

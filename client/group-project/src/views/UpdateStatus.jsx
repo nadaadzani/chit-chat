@@ -25,9 +25,9 @@ const UpdateStatus = () => {
     }
   return (
     <>
-      <form onSubmit={handleSubmit} className="px-10  h-screen md:pt-24 pt-8">
+      <form onSubmit={handleSubmit} className="px-10 max-md:px-5  h-screen md:pt-24 pt-8">
         <div className="flex justify-center items-center flex-col gap-8">
-          <h1 className="text-6xl font-bold">Update Status</h1>
+          <h1 className="text-5xl font-bold">Update Status</h1>
           {/* <label className="text-black text-xl font-bold" htmlFor="name">Status</label> */}
           <input
             className="w-full rounded-lg border border-gray-200 p-6 text-xl"

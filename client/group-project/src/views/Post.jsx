@@ -7,11 +7,12 @@ const members = [
         company_icon: ""
         ,
         // company_name: "Google",
+        photo:"https://i.pinimg.com/474x/f2/51/a7/f251a7ce30cd9977c4ef01d0c14454fb.jpg",
         job_title: "Kang donat",
         job_description: "hewan apa yang kalo diinjek ga marah? kera mik xixixi abises ngakak",
         job_type: "Full-time",
         location: "PT Mencari Cinta sejati",
-        path: "javascript:void(0)"
+        // path: "javascript:void(0)"
     }, {
         company_icon: <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 
@@ -32,11 +33,12 @@ const members = [
             </defs> */}
         </svg>,
         // company_name: "Github",
+        photo:"https://i.pinimg.com/474x/43/44/46/434446c3f388bd470f4c6f4e186eaeaa.jpg",
         job_title: "Jaka sembung",
         job_description: "burung apa yg suka nolak burung gak gak hihihihi",
         job_type: "Part-time",
         location: "USA, New york city",
-        path: "javascript:void(0)"
+        // path: "javascript:void(0)"
     }, {
         company_icon: <svg className="w-8 h-8" viewBox="0 0 43 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_690_1894)">
@@ -52,20 +54,21 @@ const members = [
                 </clipPath>
             </defs>
         </svg>,
-        company_name: "Figma",
-        job_title: "UI/UX Designer",
+        // company_name: "Figma",
+        photo:"https://i.pinimg.com/474x/10/84/39/108439d0b522155f41dbdb6654017c86.jpg",
+        job_title: "Saiful Jamil",
         job_description: "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
         job_type: "Full-time",
         location: "Mauritania",
-        path: "javascript:void(0)",
+        // path: "javascript:void(0)",
     }
 ]
 
 const Post = () => {
   return (
    <>
-   <section className="md:py-12 pt-2">
-        <div className="max-w-screen-lg h-screen mx-auto px-4 md:px-8">
+   <section className="md:py-12 min-h-screen pt-2">
+        <div className="max-w-screen-lg min-h-screen mx-auto px-4 md:px-8">
             <div className="max-w-md">
                 <h1 className="text-gray-800 text-4xl font-extrabold sm:text-5xl">All Posts</h1>
 
@@ -77,7 +80,7 @@ const Post = () => {
                             <a href={item.path} className="space-y-3">
                                 <div className="flex items-center gap-x-3">
                                     <div className="bg-white w-14 h-14 border rounded-full flex items-center justify-center">
-                                        <img className='rounded-full object-cover size-14' src="https://i.pinimg.com/474x/f2/51/a7/f251a7ce30cd9977c4ef01d0c14454fb.jpg" alt="" />
+                                        <img className='rounded-full object-cover size-14' src={item.photo} alt="" />
                                     </div>
                                     <div>
                                         <span className="block text-sm text-indigo-600 font-medium">{item.company_name}</span>
