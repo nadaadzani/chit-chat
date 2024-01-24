@@ -4,29 +4,19 @@ import { Icon } from '@iconify/react';
 
 const members = [
     {
-        company_icon: <svg className="w-8 h-8" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clipPath="url(#clip0_715_1824)">
-                <path d="M34.6588 17.9031C34.6588 16.7135 34.5623 15.5175 34.3565 14.3472H17.85V21.0861H27.3025C26.9103 23.2595 25.6499 25.1822 23.8044 26.4039V30.7765H29.4438C32.7554 27.7286 34.6588 23.2274 34.6588 17.9031Z" fill="#4285F4" />
-                <path d="M17.85 35.0011C22.5698 35.0011 26.5502 33.4514 29.4502 30.7764L23.8109 26.4038C22.2419 27.4712 20.2163 28.0757 17.8564 28.0757C13.2909 28.0757 9.41989 24.9956 8.03095 20.8545H2.21155V25.3621C5.18234 31.2715 11.2332 35.0011 17.85 35.0011Z" fill="#34A853" />
-                <path d="M8.02451 20.8547C7.29146 18.6813 7.29146 16.3278 8.02451 14.1544V9.64673H2.21154C-0.270546 14.5916 -0.270546 20.4174 2.21154 25.3623L8.02451 20.8547Z" fill="#FBBC04" />
-                <path d="M17.85 6.92659C20.3449 6.88801 22.7563 7.82683 24.5632 9.55014L29.5595 4.55382C26.3958 1.58303 22.1968 -0.0502629 17.85 0.0011793C11.2332 0.0011793 5.18234 3.73074 2.21155 9.6466L8.02452 14.1542C9.40703 10.0067 13.2845 6.92659 17.85 6.92659Z" fill="#EA4335" />
-            </g>
-            <defs>
-                <clipPath id="clip0_715_1824">
-                    <rect width="35" height="35" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
+        company_icon: ""
         ,
         // company_name: "Google",
-        job_title: "Bank jago",
-        job_description: "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        photo:"https://i.pinimg.com/474x/f2/51/a7/f251a7ce30cd9977c4ef01d0c14454fb.jpg",
+        job_title: "Kang donat",
+        job_description: "hewan apa yang kalo diinjek ga marah? kera mik xixixi abises ngakak",
         job_type: "Full-time",
-        location: "Remotely",
-        path: "javascript:void(0)"
+        location: "PT Mencari Cinta sejati",
+        // path: "javascript:void(0)"
     }, {
         company_icon: <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clipPath="url(#clip0_694_1831)">
+
+            {/* <g clipPath="url(#clip0_694_1831)">
                 <path fillRule="evenodd" clipRule="evenodd" d="M24.0005 1C18.303 1.00296 12.7923 3.02092 8.45374 6.69305C4.11521 10.3652 1.23181 15.452 0.319089 21.044C-0.593628 26.636 0.523853 32.3684 3.47174 37.2164C6.41963 42.0643 11.0057 45.7115 16.4099 47.5059C17.6021 47.7272 18.0512 46.9883 18.0512 46.36C18.0512 45.7317 18.0273 43.91 18.0194 41.9184C11.3428 43.3608 9.93197 39.101 9.93197 39.101C8.84305 36.3349 7.26927 35.6078 7.26927 35.6078C5.09143 34.1299 7.43223 34.1576 7.43223 34.1576C9.84455 34.3275 11.1123 36.6194 11.1123 36.6194C13.2504 40.2667 16.7278 39.2116 18.0949 38.5952C18.3095 37.0501 18.9335 35.999 19.621 35.4023C14.2877 34.8017 8.68408 32.7548 8.68408 23.6108C8.65102 21.2394 9.53605 18.9461 11.156 17.2054C10.9096 16.6047 10.087 14.1785 11.3905 10.8829C11.3905 10.8829 13.4054 10.2427 17.9916 13.3289C21.9253 12.2592 26.0757 12.2592 30.0095 13.3289C34.5917 10.2427 36.6026 10.8829 36.6026 10.8829C37.9101 14.1706 37.0875 16.5968 36.8411 17.2054C38.4662 18.9464 39.353 21.2437 39.317 23.6187C39.317 32.7824 33.7015 34.8017 28.3602 35.3905C29.2186 36.1334 29.9856 37.5836 29.9856 39.8122C29.9856 43.0051 29.9578 45.5736 29.9578 46.36C29.9578 46.9962 30.391 47.7391 31.6071 47.5059C37.0119 45.7113 41.5984 42.0634 44.5462 37.2147C47.4941 32.3659 48.611 26.6326 47.6972 21.0401C46.7835 15.4476 43.8986 10.3607 39.5587 6.68921C35.2187 3.01771 29.7067 1.00108 24.0085 1H24.0005Z" fill="#191717" />
                 <path d="M9.08887 35.264C9.03721 35.3826 8.84645 35.4181 8.69146 35.3351C8.53646 35.2522 8.42122 35.098 8.47686 34.9755C8.5325 34.853 8.71928 34.8214 8.87428 34.9044C9.02927 34.9874 9.14848 35.1455 9.08887 35.264Z" fill="#191717" />
                 <path d="M10.0626 36.3428C9.98028 36.384 9.88612 36.3955 9.79622 36.3753C9.70632 36.3551 9.62629 36.3045 9.56979 36.2321C9.41479 36.0662 9.38298 35.837 9.50221 35.7342C9.62143 35.6315 9.83606 35.6789 9.99105 35.8449C10.146 36.0108 10.1818 36.24 10.0626 36.3428Z" fill="#191717" />
@@ -40,14 +30,15 @@ const members = [
                 <clipPath id="clip0_694_1831">
                     <rect width="48" height="48" fill="white" />
                 </clipPath>
-            </defs>
+            </defs> */}
         </svg>,
         // company_name: "Github",
+        photo:"https://i.pinimg.com/474x/43/44/46/434446c3f388bd470f4c6f4e186eaeaa.jpg",
         job_title: "Jaka sembung",
-        job_description: "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+        job_description: "burung apa yg suka nolak burung gak gak hihihihi",
         job_type: "Part-time",
         location: "USA, New york city",
-        path: "javascript:void(0)"
+        // path: "javascript:void(0)"
     }, {
         company_icon: <svg className="w-8 h-8" viewBox="0 0 43 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_690_1894)">
@@ -63,23 +54,24 @@ const members = [
                 </clipPath>
             </defs>
         </svg>,
-        company_name: "Figma",
-        job_title: "UI/UX Designer",
+        // company_name: "Figma",
+        photo:"https://i.pinimg.com/474x/10/84/39/108439d0b522155f41dbdb6654017c86.jpg",
+        job_title: "Saiful Jamil",
         job_description: "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
         job_type: "Full-time",
         location: "Mauritania",
-        path: "javascript:void(0)",
+        // path: "javascript:void(0)",
     }
 ]
 
 const Post = () => {
   return (
    <>
-   <section className="py-12">
-        <div className="max-w-screen-lg h-screen mx-auto px-4 md:px-8">
+   <section className="md:py-12 min-h-screen pt-2">
+        <div className="max-w-screen-lg min-h-screen mx-auto px-4 md:px-8">
             <div className="max-w-md">
-                <h1 className="text-gray-800 text-2xl font-extrabold sm:text-5xl">Posts</h1>
-                <p className="text-gray-600 mt-2">We are currently looking talent software engineers, and designers to help us in our missions and to grow up.</p>
+                <h1 className="text-gray-800 text-4xl font-extrabold sm:text-5xl">All Posts</h1>
+
             </div>
             <ul className="mt-12 divide-y space-y-3">
                 {
@@ -88,7 +80,7 @@ const Post = () => {
                             <a href={item.path} className="space-y-3">
                                 <div className="flex items-center gap-x-3">
                                     <div className="bg-white w-14 h-14 border rounded-full flex items-center justify-center">
-                                        {item.company_icon}
+                                        <img className='rounded-full object-cover size-14' src={item.photo} alt="" />
                                     </div>
                                     <div>
                                         <span className="block text-sm text-indigo-600 font-medium">{item.company_name}</span>

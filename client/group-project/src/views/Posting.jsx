@@ -6,22 +6,22 @@
 const Posting = () => {
   return (
     <>
-    <section className="bg-gray-100 w-full h-screen">
-  <div className="mx-auto w-full px-4 py-16 sm:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
+    <section className="bg-white w-full h-screen">
+  <div className="mx-auto w-4/5  max-md:w-full px-4 py-16 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-1">
       <div className="lg:col-span-2 lg:py-12">
-        <p className="max-w-xl font-semibold text-6xl">
+        <p className="max-w-xl font-extrabold text-6xl">
         New Posts  
         </p>
-
+{/* 
         <div className="mt-8">
           <a href="" className="text-2xl font-bold text-pink-600"> 0151 475 4450 </a>
 
           <address className="mt-2 not-italic">282 Kevin Brook, Imogeneborough, CA 58517</address>
-        </div>
+        </div> */}
       </div>
 
-      <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+      <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-7">
         <form action="" className="space-y-4">
           <div>
             <label className="sr-only" htmlFor="name">Title</label>
@@ -94,11 +94,11 @@ const Posting = () => {
           </div>
 
           <div>
-            <label className="sr-only" htmlFor="message">Message</label>
+            <label className="sr-only" htmlFor="message"> Description</label>
 
             <textarea
               className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Message"
+              placeholder="Description"
               rows="8"
               id="message"
             ></textarea>

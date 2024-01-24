@@ -7,7 +7,7 @@ import Sidebar from "../../components/Sidebar";
 const BaseLayout = () => {
   return (
     <>
-      <div className="flex">
+      <div className="md:flex max-md:flex-col ">
         <Sidebar className="max-md:hidden" />
         <Outlet />
       </div>

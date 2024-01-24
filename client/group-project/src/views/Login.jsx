@@ -1,13 +1,44 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+  const navigate =useNavigate()
+
+  const handleChange = (field) => (e) => {
+    e.preventDefault();
+    setForm({ ...form, [field]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setForm(form);
+    Swal.fire({
+        // icon:'success',
+        title: "Welcome to chitChat!",
+        width: 600,
+        padding: "3em",
+        color: "white",
+        background: "#fff url(https://i.pinimg.com/474x/9a/5b/eb/9a5beb996e2113870cb199a95eb6b947.jpg)",
+        backdrop: `
+          url("/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
+      navigate('/home')
+  };
   return (
     <>
       <section className="relative flex flex-wrap lg:h-screen ">
         <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-5xl font-bold sm:text-6xl">
-              Welcome to <span className="text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 bg-clip-text font-extrabold py-2 px-4">
+            <h1 className="text-5xl font-extrabold sm:text-6xl">
+              Welcome to{" "}
+              <span className="text-6xl text-transparent bg-gradient-to-r from-blue-700 to-pink-400 bg-clip-text font-extrabold ">
                 chitChat
               </span>
             </h1>
@@ -18,7 +49,10 @@ const Login = () => {
             </p>
           </div>
 
-          <form action="" className="mx-auto mb-0 mt-10 max-w-md space-y-10">
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            className="mx-auto mb-0 mt-10 max-w-md space-y-10">
             <div>
               <label htmlFor="username" className="sr-only">
                 Username
@@ -27,6 +61,8 @@ const Login = () => {
               <div className="relative">
                 <input
                   type="text"
+                  value={form.username}
+                  onChange={handleChange("username")}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter username"
                 />
@@ -57,6 +93,8 @@ const Login = () => {
               <div className="relative">
                 <input
                   type="password"
+                  value={form.password}
+                  onChange={handleChange("password")}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter password"
                 />
@@ -93,12 +131,12 @@ const Login = () => {
                 </Link>
               </p>
 
-              <Link
+              <button
                 to={"/home"}
                 type="submit"
                 className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
                 Sign in
-              </Link>
+              </button>
             </div>
           </form>
         </div>

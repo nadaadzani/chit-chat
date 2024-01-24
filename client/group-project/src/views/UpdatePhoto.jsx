@@ -1,14 +1,17 @@
 // import React from 'react'
 
+// import { useState } from "react";
+
 const UpdatePhoto = () => {
+   
   return (
     <>
-      <form className="mt-8 h-screen grid px-10 grid-cols-6 gap-6" action="">
-        <div className="col-span-6 pt-14 ">
+      <form  className=" h-screen grid px-10 grid-cols-6 gap-6" action="">
+        <div className="col-span-6 pt-8 ">
           <label
             htmlFor="FirstName"
             className="block text-6xl  font-bold text-black">
-            Edit picture
+            Edit Avatar
           </label>
 
           <div className="max-w-3xl h-[400px] mt-12  rounded-lg border-2 border-dashed flex items-center justify-center">
