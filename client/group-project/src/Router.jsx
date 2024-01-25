@@ -35,7 +35,7 @@ const Router = createBrowserRouter([
   //   element: <Login />,
   // },
   {
-    element: <BaseLayout url={url}/>,
+    element: <BaseLayout socket={socket} url={url}/>,
     loader: () => {
       if (!localStorage.access_token) {
         return redirect("/login");
@@ -44,7 +44,7 @@ const Router = createBrowserRouter([
     },
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Post url={url}/>,
       },
 

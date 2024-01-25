@@ -50,7 +50,7 @@ const Sidebar = ({ url }) => {
       <div className="flex flex-col min-w-64 h-screen  max-md:hidden bg-gray-50">
         <div className="flex items-center justify-center h-28  ">
           <Link
-            to={"/home"}
+            to={"/"}
             className="text-4xl text-transparent bg-gradient-to-r from-blue-700 to-pink-400 bg-clip-text font-extrabold ">
             ChitChat
           </Link>

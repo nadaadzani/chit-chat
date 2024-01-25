@@ -5,8 +5,9 @@ import { useContext } from "react";
 import { postContext } from "../context/PostContext";
 import { useEffect } from "react";
 import axios from 'axios'
-
-const Post = ({url}) => {
+import toast, { Toaster } from 'react-hot-toast';
+// eslint-disable-next-line react/prop-types
+const Post = ({url,socket}) => {
   const { posts, fetchPosts } = useContext(postContext);
   // const [posts, setPosts] = useState([])
 
@@ -15,10 +16,61 @@ const Post = ({url}) => {
         try {
             await axios.post(`${url}/likes/${id}`, {}, {headers: {Authorization: `Bearer ${localStorage.access_token}`}})
             fetchPosts()
+
+            socket.emit("sendNotification", {
+              senderName: user,
+              receiverName: username,
+            });
+
         } catch (error) {
             console.log(error)
         }
     }
+
+    // const handleNotification = (type) => {
+    //   type === 1 && setLiked(true);
+    //   socket.emit("sendNotification", {
+    //     senderName: user,
+    //     receiverName: post.username,
+    //     type,
+    //   });
+    // };
+
+    const notify = () => toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? 'animate-enter' : 'animate-leave'
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <img
+                className="h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                alt=""
+              />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                Anjing
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                You got a new likes!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    ));
 
   useEffect(() => {
     fetchPosts();
@@ -26,8 +78,8 @@ const Post = ({url}) => {
 
   return (
     <>
-      <section className="md:py-12 min-h-screen pt-2">
-        <div className="min-w-full min-h-screen  px-4 md:px-8">
+      <section className="md:py-12 pt-2">
+        <div className="min-w-full  overflow-y-scroll px-4 md:px-8">
           <div className="max-w-full">
             <h1 className="text-gray-800 text-4xl font-extrabold sm:text-5xl">
               All Posts
@@ -63,7 +115,10 @@ const Post = ({url}) => {
                       <Icon
                         className="hover:text-red-500 size-8"
                         icon="wpf:like"
-                        onClick={e => incrementLike(e, post.id)}
+                        onClick={e => {
+                          incrementLike(e, post.id);
+                          notify();
+                        }}
                       />
 
                       {post.likes}
@@ -76,6 +131,7 @@ const Post = ({url}) => {
               </li>
             ))}
           </ul>
+          <Toaster />
         </div>
       </section>
     </>

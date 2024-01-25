@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios"
 
+// eslint-disable-next-line react/prop-types
 const Login = ({url}) => {
   const [form, setForm] = useState({
     username: "",
@@ -39,14 +40,14 @@ const Login = ({url}) => {
         });
         localStorage.setItem("access_token", data.access_token)
         localStorage.setItem("username", data.payload.username)
-        navigate('/home')
+        navigate('/')
     } catch (error) {
       console.log(error)
       // console.log(error);
       Swal.fire({
         icon: "error",
-        title:"Error bang",
-        // title: error.response.data.error,
+        title:"Error",
+        text: error.response.data.message,
       });
     }
   };

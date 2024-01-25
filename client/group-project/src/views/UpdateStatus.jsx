@@ -34,7 +34,7 @@ const UpdateStatus = ({ url }) => {
               no-repeat
             `,
       });
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.log(error);
       Swal.fire({

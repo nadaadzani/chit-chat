@@ -32,7 +32,7 @@ const Posting = () => {
           no-repeat
         `
       });
-      navigate('/home')
+      navigate('/')
     } catch (error) {
     console.log(error);  
     }
