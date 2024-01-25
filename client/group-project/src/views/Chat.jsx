@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "regenerator-runtime/runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import useSound from "use-sound";
+import soundNotif from "../assets/text.mp3";
 
 const chat = ({ url, socket }) => {
   const [messageSent, setMessageSent] = useState("");
@@ -8,12 +14,39 @@ const chat = ({ url, socket }) => {
   const [text, setText] = useState("");
   const [chatsHistory, setChatsHistory] = useState([]);
   const [user, setUser] = useState({});
+  const [islistening, setListening] = useState(false);
   const [self, setSelf] = useState({});
+  const [play] = useSound(soundNotif);
 
+  const startListening = () => {
+    SpeechRecognition.startListening({ continuous: true, language: "id" });
+    setListening(true);
+  };
+
+  const { transcript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  const stopListening = () => {
+    SpeechRecognition.stopListening();
+    setListening(false);
+  };
+  if (!browserSupportsSpeechRecognition) {
+    return null;
+  }
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesn't support speech recognition.</span>;
+  // }
   // function handleSubmit(e) {
   //   e.preventDefault();
   //   socket.emit("chat:new", messageSent);
   // }
+
+  useEffect(() => {
+    if (transcript) {
+      setText(transcript);
+      // e.target.reset
+    }
+  }, [transcript]);
 
   useEffect(() => {
     socket.auth = {
@@ -29,8 +62,8 @@ const chat = ({ url, socket }) => {
     // });
 
     socket.on("refresh chat", () => {
-      fetchChatsHistory()
-    })
+      fetchChatsHistory();
+    });
 
     return () => {
       socket.off("message:update");
@@ -50,14 +83,12 @@ const chat = ({ url, socket }) => {
         { headers: { Authorization: `Bearer ${localStorage.access_token}` } }
       );
 
-      e.target.reset()
-      fetchChatsHistory()
+      e.target.reset();
+      fetchChatsHistory();
     } catch (error) {
       console.log(error);
     }
   }
-
-
 
   const { id } = useParams();
 
@@ -485,6 +516,17 @@ const chat = ({ url, socket }) => {
             <span className="absolute inset-y-0 flex items-center">
               <button
                 type="button"
+                onClick={
+                  islistening
+                    ? () => {
+                        stopListening();
+                        // play();
+                      }
+                    : () => {
+                        startListening();
+                        play();
+                      }
+                }
                 className="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -504,9 +546,12 @@ const chat = ({ url, socket }) => {
             <input
               type="text"
               placeholder="Write your message!"
+              // {transcript}
+              value={text}
               className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"
               onChange={(e) => setText(e.target.value)}
             />
+            {/* {transcript} */}
             <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
               <button
                 type="button"
