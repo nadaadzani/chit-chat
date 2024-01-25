@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios"
-
+import useSound from 'use-sound';
+import soundNotif from "../assets/error.mp3"
+import soundNotiflogin from "../assets/login.mp3"
 // eslint-disable-next-line react/prop-types
 const Login = ({url}) => {
   const [form, setForm] = useState({
@@ -11,7 +13,8 @@ const Login = ({url}) => {
   });
   // console.log(form)
   const navigate = useNavigate()
-
+  const [play] = useSound(soundNotif)
+  const [play1] = useSound(soundNotiflogin)
   const handleChange = (field) => (e) => {
     e.preventDefault();
     setForm({ ...form, [field]: e.target.value });
@@ -24,6 +27,7 @@ const Login = ({url}) => {
       const {data}  = await axios.post(`${url}/login`, form)
       // console.log(data)
       // setForm(form);
+      play1()
       Swal.fire({
           // icon:'success',
           title: "Welcome to chitChat!",
@@ -44,10 +48,12 @@ const Login = ({url}) => {
     } catch (error) {
       console.log(error)
       // console.log(error);
+      play()
       Swal.fire({
         icon: "error",
         title:"Error",
         text: error.response.data.message,
+        // play()
       });
     }
   };
@@ -59,7 +65,7 @@ const Login = ({url}) => {
             <h1 className="text-5xl font-extrabold sm:text-6xl">
               Welcome to{" "}
               <span className="text-6xl text-transparent bg-gradient-to-r from-blue-700 to-pink-400 bg-clip-text font-extrabold ">
-                chitChat
+                ChitChat
               </span>
             </h1>
 

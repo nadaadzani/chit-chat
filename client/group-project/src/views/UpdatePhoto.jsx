@@ -24,7 +24,7 @@ const UpdatePhoto = ({url}) => {
           },
         }
       );
-      navigate("/home");
+      navigate("/");
       Swal.fire({
         icon: "success",
         title: "Success",

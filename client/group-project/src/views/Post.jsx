@@ -3,13 +3,28 @@ import { Icon } from "@iconify/react";
 // import toast, { Toaster } from 'react-hot-toast';
 import { useContext } from "react";
 import { postContext } from "../context/PostContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast';
+import useSound from 'use-sound';
+import soundNotif from "../assets/sound.mp3"
 // eslint-disable-next-line react/prop-types
 const Post = ({url,socket}) => {
   const { posts, fetchPosts } = useContext(postContext);
+  const [play] = useSound(soundNotif)
+  const [self, setSelf] = useState({})
   // const [posts, setPosts] = useState([])
+
+  async function fetchSelf() {
+    try {
+      const { data } = await axios.get(`${url}/profile`, {
+        headers: { Authorization: `Bearer ${localStorage.access_token}` },
+      });
+      setSelf(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 //   console.log(posts);
     async function incrementLike(e,id) {
@@ -47,16 +62,16 @@ const Post = ({url,socket}) => {
             <div className="flex-shrink-0 pt-0.5">
               <img
                 className="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                src={self.avatarUrl}
                 alt=""
               />
             </div>
             <div className="ml-3 flex-1">
               <p className="text-sm font-medium text-gray-900">
-                Anjing
+                {self.username}
               </p>
               <p className="mt-1 text-sm text-gray-500">
-                You got a new likes!
+                You liked this post
               </p>
             </div>
           </div>
@@ -74,6 +89,7 @@ const Post = ({url,socket}) => {
 
   useEffect(() => {
     fetchPosts();
+    fetchSelf()
   }, []);
 
   return (
@@ -118,6 +134,7 @@ const Post = ({url,socket}) => {
                         onClick={e => {
                           incrementLike(e, post.id);
                           notify();
+                          play()
                         }}
                       />
 

@@ -106,7 +106,7 @@ const Sidebar = ({ url }) => {
         <div className="flex   gap-2">
           <div>
             <Link
-              to={"/home"}
+              to={"/"}
               className="text-3xl text-transparent bg-gradient-to-r from-blue-700 to-pink-400 bg-clip-text font-extrabold ">
               ChitChat
             </Link>
@@ -133,6 +133,15 @@ const Sidebar = ({ url }) => {
               className="text-blue-500 hover:text-blue-700 font-semibold">
               <Icon className="size-10" icon="bx:chat" />
             </Link>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                localStorage.clear();
+                navigate("/login");
+              }}
+              className="text-blue-500 hover:text-blue-700 font-semibold">
+              <Icon className="size-10" icon="icon-park-outline:logout" />
+            </button>
             {/* <h1>P</h1>
             <h1>H</h1> */}
           </div>
