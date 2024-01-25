@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios"
-import useSound from 'use-sound';
-import soundNotif from "../assets/error.mp3"
-import soundNotiflogin from "../assets/login.mp3"
+import axios from "axios";
+import useSound from "use-sound";
+import soundNotif from "../assets/error.mp3";
+import soundNotiflogin from "../assets/login.mp3";
 // eslint-disable-next-line react/prop-types
-const Login = ({url}) => {
+const Login = ({ url }) => {
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
   // console.log(form)
-  const navigate = useNavigate()
-  const [play] = useSound(soundNotif)
-  const [play1] = useSound(soundNotiflogin)
+  const navigate = useNavigate();
+  const [play] = useSound(soundNotif);
+  const [play1] = useSound(soundNotiflogin);
   const handleChange = (field) => (e) => {
     e.preventDefault();
     setForm({ ...form, [field]: e.target.value });
@@ -23,35 +23,36 @@ const Login = ({url}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.log(form)
-      const {data}  = await axios.post(`${url}/login`, form)
+      console.log(form);
+      const { data } = await axios.post(`${url}/login`, form);
       // console.log(data)
       // setForm(form);
-      play1()
+      play1();
       Swal.fire({
-          // icon:'success',
-          title: "Welcome to chitChat!",
-          width: 600,
-          padding: "3em",
-          color: "white",
-          timer: 1000,
-          background: "#fff url(https://i.pinimg.com/474x/9a/5b/eb/9a5beb996e2113870cb199a95eb6b947.jpg)",
-          backdrop: `
+        // icon:'success',
+        title: "Welcome to chitChat!",
+        width: 600,
+        padding: "3em",
+        color: "white",
+        timer: 1000,
+        background:
+          "#fff url(https://i.pinimg.com/474x/9a/5b/eb/9a5beb996e2113870cb199a95eb6b947.jpg)",
+        backdrop: `
             url("/images/nyan-cat.gif")
             left top
             no-repeat
-          `
-        });
-        localStorage.setItem("access_token", data.access_token)
-        localStorage.setItem("username", data.payload.username)
-        navigate('/')
+          `,
+      });
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("username", data.payload.username);
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       // console.log(error);
-      play()
+      play();
       Swal.fire({
         icon: "error",
-        title:"Error",
+        title: "Error",
         text: error.response.data.message,
         // play()
       });
@@ -78,7 +79,8 @@ const Login = ({url}) => {
           <form
             action=""
             onSubmit={handleSubmit}
-            className="mx-auto mb-0 mt-10 max-w-md space-y-10">
+            className="mx-auto mb-0 mt-10 max-w-md space-y-10"
+          >
             <div>
               <label htmlFor="username" className="sr-only">
                 Username
@@ -99,7 +101,8 @@ const Login = ({url}) => {
                     className="h-4 w-4 text-gray-400"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -131,7 +134,8 @@ const Login = ({url}) => {
                     className="h-4 w-4 text-gray-400"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -160,7 +164,8 @@ const Login = ({url}) => {
               <button
                 to={"/home"}
                 type="submit"
-                className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
+                className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              >
                 Sign in
               </button>
             </div>
