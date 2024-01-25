@@ -1,7 +1,7 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 // import Sidebar from "./components/Sidebar";
 import Chat from "./views/Chat";
-import BaseLayout from "./views/layout/baseLayout";
+import BaseLayout from "./views/layout/BaseLayout";
 import Login from "./views/Login";
 import Post from "./views/Post";
 import Posting from "./views/Posting";
