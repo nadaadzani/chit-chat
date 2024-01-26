@@ -7,6 +7,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import useSound from "use-sound";
 import soundNotif from "../assets/text.mp3";
+import { useRef } from "react";
 
 const chat = ({ url, socket }) => {
   const [messageSent, setMessageSent] = useState("");
@@ -17,6 +18,7 @@ const chat = ({ url, socket }) => {
   const [islistening, setListening] = useState(false);
   const [self, setSelf] = useState({});
   const [play] = useSound(soundNotif);
+  const formRef = useRef(null);
 
   const startListening = () => {
     SpeechRecognition.startListening({ continuous: true, language: "id" });
@@ -44,7 +46,7 @@ const chat = ({ url, socket }) => {
   useEffect(() => {
     if (transcript) {
       setText(transcript);
-      // e.target.reset
+      formRef.current.reset()
     }
   }, [transcript]);
 
@@ -84,6 +86,9 @@ const chat = ({ url, socket }) => {
       );
 
       e.target.reset();
+      setText()
+      formRef.current.reset()
+      // transcript=""
       fetchChatsHistory();
     } catch (error) {
       console.log(error);
@@ -510,6 +515,7 @@ const chat = ({ url, socket }) => {
       </div> */}
         </div>
         <form
+        ref={formRef}
           onSubmit={handleSubmitMessage}
           className="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
           <div className="relative flex">
@@ -553,7 +559,7 @@ const chat = ({ url, socket }) => {
             />
             {/* {transcript} */}
             <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
-              <button
+              {/* <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
                 <svg
@@ -569,8 +575,8 @@ const chat = ({ url, socket }) => {
                     d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
                   />
                 </svg>
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
                 <svg
@@ -592,8 +598,8 @@ const chat = ({ url, socket }) => {
                     d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
                 <svg
@@ -609,7 +615,7 @@ const chat = ({ url, socket }) => {
                     d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-              </button>
+              </button> */}
               <button
                 type="submit"
                 className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
